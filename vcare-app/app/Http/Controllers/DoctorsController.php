@@ -55,6 +55,7 @@ class DoctorsController extends Controller
             $bookedDoctor->phone = $request->phone;
             $bookedDoctor->email = $request->email;
             $bookedDoctor->doctor_id = $request->doctor_id;
+            $bookedDoctor->user_id = auth()->user()->id;
             $bookedDoctor->is_compeleted = '0';
             $bookedDoctor->is_readed = '0';
             $bookedDoctor->save();
@@ -65,51 +66,33 @@ class DoctorsController extends Controller
         return dd($request);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function changeStatusBooked($id){
+        $booked = BookedDoctor::where('id',$id)->first();
+        if($booked->is_compeleted == '0'){
+            $booked->is_compeleted = '1';
+        }else{
+            $booked->is_compeleted = '0';
+        }
+        $booked->is_readed = '1' ;
+        // return dd($booked);
+        $booked->save();
+        return redirect()->back()->with(['success'=>'Status Changed Successfully !! Have A Good Day']);
+        return dd($id);
+    }
+    public function changeStatusBookedRead($id){
+        $settings = Settings::all()->Last();
+        $selectedBooked = BookedDoctor::where('id',$id)->first();
+        $selectedBooked->is_readed = '1';
+        $selectedBooked->save();
+
+        // return dd($selectedBooked);
+        return view('backend.doctors.readBooked',compact('settings','selectedBooked'));
+        return dd($id);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+    public function deleteBooked($id){
+        $booked = BookedDoctor::where('id',$id)->first()->delete();
+        return redirect()->back()->with(['success'=>'Delete Successfully !! Have A Good Day']);
+        return dd($id);
     }
 }

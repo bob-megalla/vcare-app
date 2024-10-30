@@ -23,8 +23,8 @@
 
     </head>
 
-    @include('backend.admin.inc.navbar')
-    @include('backend.admin.inc.sidebar')
+    @include('backend.doctors.inc.navbar')
+    @include('backend.doctors.inc.sidebar')
 @yield('content')
 
 

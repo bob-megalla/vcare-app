@@ -13,9 +13,11 @@
     <div class="user-panel mt-3 pb-3 mb-3 d-flex ">
       <div class="info text-center">
 
-        <a href="{{ route('admin.dashboard') }}" class="d-block text-light">{{ ucwords($settings['site_name']) }} <br>
+        <a href="{{ route('doctor.dashboard') }}" class="d-block text-light">{{ ucwords($settings['site_name']) }} <br>
+           DR. {{ ucwords(auth()->user()->name) }} ||
           {{ auth()->user()->email }} <br>
-          {{ auth()->user()->phone }}
+          {{ auth()->user()->phone }} || {{ auth()->user()->roles }}
+
         </a>
       </div>
     </div>
@@ -27,7 +29,7 @@
                    with font-awesome or any other icon font library -->
         <!-- START DASHBOARD -->
         <li class="nav-item">
-          <a href="{{ route('admin.dashboard') }}" class="nav-link @if (request()->routeIs('admin.dashboard')) active @endif">
+          <a href="{{ route('doctor.dashboard') }}" class="nav-link @if (request()->routeIs('doctor.dashboard')) active @endif">
 
             <i class="nav-icon fas fa-home"></i>
             <p>
@@ -38,15 +40,15 @@
         <!-- END DASHBOARD -->
         <!-- START DOCTORS -->
         <li class="nav-item">
-          <a href="<?= '?admin=allDoctors' ?>" class="nav-link ">
+          <a href="{{ route('doctor.BookedDoctor') }}" class="nav-link @if (request()->routeIs(['doctor.BookedDoctor','doctor.changeStatusBookedRead'])) active @endif">
           <i class="fa fa-user-md m-1"></i>
             <p>
-              DOCTORS
+              {{ strtoupper('booked') }}
             </p>
           </a>
         </li>
         <!-- END DOCTORS -->
-        <!-- START MESSAGES -->
+        {{-- <!-- START MESSAGES -->
         <li class="nav-item">
           <a href="<?= '?admin=allMessages' ?>" class="nav-link">
           <i class="far fa-comments m-1"></i>
@@ -109,7 +111,7 @@
             </p>
           </a>
         </li>
-        <!-- END BOOKED -->
+        <!-- END BOOKED --> --}}
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

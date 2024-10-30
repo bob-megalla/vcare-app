@@ -14,8 +14,10 @@
                 @if (!auth()->user())
                 <a href="{{ route('indexLogin') }}" class="link text-white">Login</a>
                 <a href="{{ route('indexRegister') }}" class="link text-white">Register</a>
-                <a href="{{ route('indexContact') }}" class="link text-white">Contact</a>
                 @else
+                @if (auth()->user()->roles == "user")
+                <a href="{{ route('indexContact') }}" class="link text-white">Contact</a>
+                @endif
                 <a href="{{ route('logout') }}" class="link text-white">Logout</a>
 
                 @endif

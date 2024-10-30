@@ -6,7 +6,7 @@
             <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('admin.dashboard') }}" class="nav-link">Home</a>
+            <a href="{{ route('user.dashboard') }}" class="nav-link">Home</a>
 
         </li>
         <li class="nav-item d-none d-sm-inline-block">
@@ -33,7 +33,7 @@
 
 
         <!-- Notifications Booked Dropdown Menu -->
-        <li class="nav-item dropdown">
+        {{-- <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <i class="far fa-bell"></i>
                 @php
@@ -111,6 +111,10 @@
             </h3>
             <p class="text-sm"> Subj :<?= $msg['subject']?></p>
             <p class="text-sm"> Msg :<?= $msg['message']?></p>
+            @php
+                $senderName = App\Models\User::where('id',$msg['user_id'])->first();
+            @endphp
+            <p class="text-sm"> Sender Name :<?= $senderName->name?></p>
             <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i>  <?= date("F d, Y",strtotime($msg['created_at']))?></p>
           </div>
         </div>
@@ -120,7 +124,7 @@
       <div class="dropdown-divider"></div>
       <a href="<?= "?admin=allMessages" ?>" class="dropdown-item dropdown-footer">See All Messages</a>
     </div>
-  </li>
+  </li> --}}
 
     </ul>
 </nav>

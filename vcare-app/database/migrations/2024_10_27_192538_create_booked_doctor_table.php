@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('phone',20);
             $table->string('email');
             $table->foreignId('doctor_id')->index();
+            $table->integer('user_id');
             $table->enum('is_compeleted',['0','1'])->default('0');
             $table->enum('is_readed',['0','1'])->default('0');
             $table->softDeletes();

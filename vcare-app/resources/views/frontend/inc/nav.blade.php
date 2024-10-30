@@ -15,11 +15,20 @@
                 <a type="button" class="btn btn-outline-light navigation--button" href="{{ route('indexMajor') }}">majors</a>
                 <a type="button" class="btn btn-outline-light navigation--button" href="{{ route('indexDoctors') }}">Doctors</a>
                 @if (auth()->user())
-                <a type="button" class="btn btn-outline-light navigation--button"
-                href="{{ route('admin.dashboard') }}">Dashboard</a>
+                    @if (auth()->user()->roles == "admin")
+                    <a type="button" class="btn btn-outline-light navigation--button"
+                    href="{{ route('admin.dashboard') }}">Admin Dashboard</a>
+                    @elseif(auth()->user()->roles == "doctors")
+                    <a type="button" class="btn btn-outline-light navigation--button"
+                    href="{{ route('admin.dashboard') }}">Doctors Dashboard</a>
+                    @elseif(auth()->user()->roles == "user")
+                    <a type="button" class="btn btn-outline-light navigation--button"
+                    href="{{ route('user.dashboard') }}">User Dashboard</a>
+                    @endif
                 @else
-                <a type="button" class="btn btn-outline-light navigation--button" href="{{ route('indexLogin') }}">Login</a>
-                 @endif
+                    <a type="button" class="btn btn-outline-light navigation--button" href="{{ route('indexLogin') }}">Login</a>
+                @endif
+
             </div>
         </div>
     </div>

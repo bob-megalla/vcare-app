@@ -50,7 +50,7 @@
                             <input type="text" class="form-control mb-3" id="name" name="name"
                                 value="{{ old('name') }}" />
                             <input type="text" style="display: none" class="form-control" id="doctor_id" name="doctor_id"
-                                value="{{ $doctors['id'] }}" />
+                                value="{{ $doctors['user_id'] }}" />
                             @error('name')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

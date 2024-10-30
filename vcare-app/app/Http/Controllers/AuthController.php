@@ -33,11 +33,14 @@ class AuthController extends Controller
                     if($user->is_confirmed == 1){
                         if(Hash::check($request->password, $user->password)){
                             if($user->roles === 'doctors'){
-                                return dd($user);
-
+                                Auth()->login($user);
+                                return redirect()->route('doctor.dashboard');
                             }elseif($user->roles === 'admin'){
                                 Auth()->login($user);
                                 return redirect()->route('admin.dashboard');
+                            }else{
+                                Auth()->login($user);
+                                return redirect()->route('user.dashboard');
                             }
 
 
@@ -45,7 +48,7 @@ class AuthController extends Controller
                             return back()->withErrors(['errors' => 'Invalid Email Or Password'])->withInput();
                         }
                     }else{
-                        return back()->withErrors(['errors' =>'Your Email IS Not Confirmed Yet'])->withInput();
+                        return back()->withErrors(['errors' =>'Your Email IS Not Confirmed Yet Please Check After 24 Hours'])->withInput();
                     }
                 }else{
                     return back()->withErrors(['errors' =>'Your Email Is Blocked '])->withInput();
@@ -87,7 +90,7 @@ class AuthController extends Controller
             $user->phone = $request->phone;
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
-            $user->roles = 'doctors';
+            $user->roles = 'user';
             $user->is_active = '1';
             $user->is_confirmed = '0';
             $user->save();

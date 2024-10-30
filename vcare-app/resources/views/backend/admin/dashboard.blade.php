@@ -1,12 +1,11 @@
 @extends('layouts.admin')
 
 @section('title')
-Admin DashBoard
+    Admin DashBoard
 @endsection
 
 
 @section('content')
-
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <div class="content-header">
@@ -134,6 +133,4 @@ Admin DashBoard
     </div>
     <!-- /.content -->
   </div>
-
 @endsection
-

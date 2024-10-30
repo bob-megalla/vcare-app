@@ -23,8 +23,8 @@
 
     </head>
 
-    @include('backend.admin.inc.navbar')
-    @include('backend.admin.inc.sidebar')
+    @include('frontend.user.inc.navbar')
+    @include('frontend.user.inc.sidebar')
 @yield('content')
 
 

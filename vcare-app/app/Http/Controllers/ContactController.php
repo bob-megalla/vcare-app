@@ -59,6 +59,7 @@ class ContactController extends Controller
             $message->email = $request->email;
             $message->subject = $request->subject;
             $message->message = $request->message;
+            $message->user_id = auth()->user()->id;
             $message->is_readed = '0';
             // return dd($message);
 

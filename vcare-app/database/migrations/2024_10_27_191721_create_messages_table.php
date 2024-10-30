@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('subject');
             $table->text('message');
+            $table->integer('user_id');
             $table->enum('is_readed',['0','1'])->default('0');
             $table->softDeletes();
             $table->timestamps();
