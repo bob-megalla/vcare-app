@@ -10,7 +10,7 @@
 
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ route('logout') }}" class="nav-link">Logout</a>
+            <a href="{{ route('user.logout') }}" class="nav-link">Logout</a>
         </li>
     </ul>
 
@@ -20,7 +20,7 @@
     <ul class="navbar-nav ml-auto">
         <!-- Messages Dropdown Menu -->
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('logout') }}">
+            <a class="nav-link" href="{{ route('user.logout') }}">
                 <i class="fa fa-unlock-alt" title="Sign out"></i>
             </a>
         </li>

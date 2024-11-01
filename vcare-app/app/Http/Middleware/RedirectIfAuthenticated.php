@@ -16,9 +16,16 @@ class RedirectIfAuthenticated
      */
     public function handle(Request $request, Closure $next): Response
     {
+        // if($request->is('/') || $request->is('/*') ){
+        //     // return dd($request);
+        //     if(!empty(Auth::guard()->user())){              //// if user->guard'emp' is logged in then redirect to EMP/dashboard
+        //         return redirect()->route('emp.dashboard');
+        //     }
+        // }
+        // return dd($request);
         if (Auth::check()) {
             if(Auth()->user()->roles == "admin"){
-                return redirect()->route("admin.dashboard");
+                return redirect()->route("doctor.dashboard");
             }elseif(Auth()->user()->roles == "doctors"){
                 return redirect()->route("doctor.dashboard");
             }

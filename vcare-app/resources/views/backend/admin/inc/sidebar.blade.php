@@ -39,7 +39,7 @@
         <!-- END DASHBOARD -->
         <!-- START DOCTORS -->
         <li class="nav-item">
-          <a href="<?= '?admin=allDoctors' ?>" class="nav-link ">
+          <a href="{{ route('admin.AllDoctors') }}" class="nav-link @if (request()->routeIs(['admin.AllDoctors'])) active @endif">
           <i class="fa fa-user-md m-1"></i>
             <p>
               DOCTORS
@@ -49,7 +49,7 @@
         <!-- END DOCTORS -->
         <!-- START MESSAGES -->
         <li class="nav-item">
-          <a href="<?= '?admin=allMessages' ?>" class="nav-link">
+          <a href="{{ route('admin.AllMessages') }}" class="nav-link @if (request()->routeIs(['admin.AllMessages','admin.ReadMessages'])) active @endif">
           <i class="far fa-comments m-1"></i>
             <p>
               MESSAGES
@@ -60,7 +60,7 @@
 
         <!-- START MAJORS -->
         <li class="nav-item">
-          <a href="<?= '?admin=allMajors' ?>" class="nav-link ">
+          <a href="{{ route('admin.AllMajors') }}" class="nav-link @if (request()->routeIs(['admin.AllMajors'])) active @endif">
           <i class="fa fa-stethoscope m-1"></i>
             <p>
               MAJORS
@@ -71,7 +71,7 @@
 
         <!-- START USERS -->
         <li class="nav-item">
-          <a href="<?= '?admin=allUsers' ?>" class="nav-link ">
+          <a href="{{ route('admin.AllUsers') }}" class="nav-link @if (request()->routeIs(['admin.AllUsers'])) active @endif">
           <i class="fas fa-users m-1"></i>
             <p>
               USERS
@@ -81,7 +81,7 @@
         <!-- END USERS -->
         <!-- START SETTINGS -->
         <li class="nav-item">
-          <a href="<?= '?admin=WebsiteSettings' ?>" class="nav-link">
+          <a href="{{ route('admin.Settings') }}" class="nav-link @if (request()->routeIs(['admin.Settings'])) active @endif">
           <i class="fa fa-cogs m-1"></i>
             <p>
               SETTINGS
@@ -92,7 +92,7 @@
 
         <!-- START NEWS -->
         <li class="nav-item">
-          <a href="<?= '?admin=allNews' ?>" class="nav-link ">
+          <a href="{{ route('admin.AllNews') }}" class="nav-link @if (request()->routeIs(['admin.AllNews'])) active @endif">
           <i class="fa fa-podcast m-1"></i>
             <p>
               NEWS
@@ -103,7 +103,7 @@
 
         <!-- START BOOKED -->
         <li class="nav-item">
-          <a href="<?= '?admin=allBooked' ?>" class="nav-link ">
+          <a href="{{ route('admin.AllBooked') }}" class="nav-link @if (request()->routeIs(['admin.AllBooked'])) active @endif">
           <i class="fa fa-wheelchair m-1"></i>
             <p>
               BOOKED

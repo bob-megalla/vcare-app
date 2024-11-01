@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\News;
+use App\Models\User;
 use App\Models\Majors;
 use App\Models\Doctors;
 use App\Models\Settings;
@@ -16,11 +17,17 @@ class WelcomeController extends Controller
         $settings = Settings::all()->Last();
         $majors = Majors::paginate(6);
         $doctors = Doctors::all();
-        $news = News::all();
+        $user_doctor = User::where('roles','doctors')
+        ->where('is_active',"1")
+        ->where('is_confirmed',"1")
+        ->orderBy('id','desc')
+        ->get();
 
-        // dd($majors);
+        $news = News::where('published','1')->orderBy('id','desc')->paginate(4);
 
-        return view('frontend.welcome',['settings'=>$settings,'majors'=>$majors,'doctors'=>$doctors,'news'=>$news]);
+        // dd($user_doctor);
+
+        return view('frontend.welcome',['settings'=>$settings,'majors'=>$majors,'doctors'=>$doctors,'news'=>$news,'user_doctor'=>$user_doctor]);
     }
 
 }

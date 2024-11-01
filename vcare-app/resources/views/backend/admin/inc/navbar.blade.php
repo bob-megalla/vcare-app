@@ -49,7 +49,7 @@
                     <div class="dropdown-divider"></div>
                     @foreach ($unreaded_messages as $msg )
 
-                    <a href="?admin=getBooked&id={{ $msg['id'] }}" class="dropdown-item">
+                    <a href="{{ route('admin.getBooked',$msg['id']) }}" class="dropdown-item">
                         <!-- Message Start -->
                         <div class="media">
                             <div class="media-body">
@@ -77,7 +77,7 @@
                     </a>
                     @endforeach
                     <div class="dropdown-divider"></div>
-                    <a href="<?= '?admin=allBooked' ?>" class="dropdown-item dropdown-footer">See All Booked</a>
+                    <a href="{{ route('admin.AllBooked') }}" class="dropdown-item dropdown-footer">See All Booked</a>
                 </div>
 
 
@@ -102,7 +102,7 @@
       <span class="dropdown-header">{{ count($unreaded_messages) }} Messages</span>
       <div class="dropdown-divider"></div>
       @foreach ($unreaded_messages as $msg)
-      <a href="?admin=getMessage&id=<?=$msg["id"]?>" class="dropdown-item">
+      <a href="{{ route('admin.ReadMessages',$msg["id"]) }}" class="dropdown-item">
         <!-- Message Start -->
         <div class="media">
           <div class="media-body">
@@ -123,7 +123,7 @@
       </a>
       @endforeach
       <div class="dropdown-divider"></div>
-      <a href="<?= "?admin=allMessages" ?>" class="dropdown-item dropdown-footer">See All Messages</a>
+      <a href="{{ route('admin.AllMessages') }}" class="dropdown-item dropdown-footer">See All Messages</a>
     </div>
   </li>
 

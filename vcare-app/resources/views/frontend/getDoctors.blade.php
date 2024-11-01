@@ -15,9 +15,14 @@
         <div class="doctors-grid">
             @if (!empty($doctors[0]))
             @foreach($doctors as $doctor)
+            @php
+                $doctor_status = App\Models\User::where('id',$doctor->user_id)->first();
+            @endphp
+            {{-- @dd($doctor_status) --}}
+            @if ($doctor_status->is_active == "1" && $doctor_status->is_confirmed == "1")
             <li class="splide__slide">
                 <div class="card p-2" style="width: 18rem;">
-                    <img src="assets/img/doctors/<?= $doctor['img_doctor'] ?>"
+                    <img src="{{ asset('assets/img/doctors/' . $doctor['img_doctor']) }}"
                         class="card-img-top rounded-circle card-image-circle" alt="major">
                     <div class="card-body d-flex flex-column gap-1 justify-content-center">
                         <h4 class="card-title fw-bold text-center">DR.<?= strtoupper($doctor['name_doctor']) ?></h4>
@@ -28,7 +33,9 @@
                     </div>
                 </div>
             </li>
+            @endif
             @endforeach
+
             @else
             <div class="alert alert-danger col-12" role="alert">
                 NO DOCTORS YET!!!

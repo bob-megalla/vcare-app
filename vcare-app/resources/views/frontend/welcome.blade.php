@@ -35,16 +35,18 @@
         <section class="splide home__slider__doctors mb-5">
             <div class="splide__track ">
                 <ul class="splide__list">
-                    @foreach ($doctors as $doc)
+                    @foreach ($user_doctor as $doc)
                     <li class="splide__slide">
+                                @php
+                                $doctorsMajorTable = app\Models\Doctors::where('user_id',$doc->id)->first();
+                                $majorDoctor = app\Models\Majors::where('id',$doctorsMajorTable->major_id)->first();
+                                @endphp
                     <div class="card p-2" style="width: 18rem;">
-                        <img src="{{ asset('assets/img/doctors/' . $doc['img_doctor']) }}" class="card-img-top rounded-circle card-image-circle"
+                        <img src="{{ asset('assets/img/doctors/' . $doctorsMajorTable['img_doctor']) }}" class="card-img-top rounded-circle card-image-circle"
                             alt="major">
                         <div class="card-body d-flex flex-column gap-1 justify-content-center">
-                            <h4 class="card-title fw-bold text-center">{{ ucwords($doc['name_doctor']) }}</h4>
-                            @php
-                                $majorDoctor = app\Models\Majors::where('id',$doc['major_id'])->first();
-                            @endphp
+                            <h4 class="card-title fw-bold text-center">{{ ucwords($doc['name']) }}</h4>
+                                {{-- @dd($doctorsMajorTable) --}}
                             <h6 class="card-title fw-bold text-center">{{ ucwords($majorDoctor->name_major) }}</h6>
                             <a href="{{ route('storeAppointment',$doc['id']) }}" class="btn btn-outline-primary card-button">Book an
                                 appointment</a>

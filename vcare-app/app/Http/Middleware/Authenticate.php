@@ -19,6 +19,29 @@ class Authenticate
         if (Auth::guest()) {
             return redirect()->route('indexLogin');
         }
+        if(auth()->user()->roles =="user"){
+            if($request->is('admin/*')){
+                return redirect()->route('user.dashboard');
+                // return dd('test');
+            }elseif($request->is('doctors/*')){
+                return redirect()->route('user.dashboard');
+            }
+        }
+        if(auth()->user()->roles =="doctors"){
+            if($request->is('admin/*')){
+                return redirect()->route('doctor.dashboard');
+            }elseif($request->is('user/*')){
+                return redirect()->route('doctor.dashboard');
+            }
+        }
+        if(auth()->user()->roles =="admin"){
+            if($request->is('doctors/*')){
+                return redirect()->route('admin.dashboard');
+            }elseif($request->is('user/*')){
+                return redirect()->route('admin.dashboard');
+            }
+        }
+
         return $next($request);
     }
 }

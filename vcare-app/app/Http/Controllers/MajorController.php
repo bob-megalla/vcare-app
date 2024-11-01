@@ -24,7 +24,8 @@ class MajorController extends Controller
 
     public function getDoctors($id){
         $settings = Settings::all()->Last();
-        $doctors = Doctors::where('major_id',$id)->orderBy('name_doctor','ASC')->get();
+        $doctors = Doctors::where('major_id',$id)
+        ->orderBy('name_doctor','ASC')->get();
         return view('frontend.getDoctors',['settings'=>$settings,'doctors'=>$doctors]);
     }
     /**
